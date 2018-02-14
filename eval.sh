@@ -3,17 +3,19 @@
 problem=$(printenv PROBLEM)
 time_limit=$(printenv TIME)
 
-g++ eval/$problem.cpp -o eval/$problem
-
 if [ -e $problem ]; then
   echo "Missing parameter PROBLEM"
   exit
 fi
 
 if [ -e $time_limit ]; then
-  echo "Missing parameter PROBLEM"
+  echo "Missing parameter TIME"
   exit
 fi
+
+echo "Compiling checker code..."
+g++ eval/$problem.cpp -o eval/$problem
+
 
 for file in ./exec/*
 do
