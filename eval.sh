@@ -21,10 +21,16 @@ echo "Done"
 
 echo
 
+max_size=0
+
 for file in ./exec/*
 do
   noext=$(basename $file .cpp)
   echo "Evaluare: $noext.cpp"
+
+  if [ ${#noext} -gt $max_size ]; then
+    max_size=${#noext}
+  fi
 
   pct=0
   total=0
@@ -75,8 +81,10 @@ done
 
 echo "Rezultate: "
 
+max_size=$((max_size+1))
+
 for file in ./exec/*
 do
   noext=$(basename $file .cpp)
-  echo "$noext: ${scores[$noext]}"
+  printf "%-${max_size}s: %s\n" "$noext" "${scores[$noext]}"
 done
