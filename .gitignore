@@ -7,5 +7,6 @@ eval/*
 !sources/.gitkeep
 !sandbox/.gitkeep
 !tests/.gitkeep
+!tests/README
 !exec/.gitkeep
 !eval/.gitkeep

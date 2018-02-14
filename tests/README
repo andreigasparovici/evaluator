@@ -1,0 +1,6 @@
+Tests should be in the following format:
+
+problemk.in
+problemk.ok
+
+where problem is the problem name and k is the index of the test
