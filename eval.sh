@@ -56,6 +56,10 @@ do
       cd ..
       echo -e "Test #$total: \e[31mSegmentation fault!\e[0m"
       continue
+    elif [ $exit_code != 0 ]; then
+      cd ..
+      echo -e "Test #$total: \e[31mNon-zero exit code!\e[0m"
+      continue
     fi
 
     cd ..
