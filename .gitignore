@@ -3,3 +3,9 @@ sandbox/*
 tests/*
 exec/*
 eval/*
+
+!sources/.gitkeep
+!sandbox/.gitkeep
+!tests/.gitkeep
+!exec/.gitkeep
+!eval/.gitkeep
