@@ -7,4 +7,5 @@ fi
 
 
 ./compile.sh
+echo
 PROBLEM=$1 TIME=$2 ./eval.sh

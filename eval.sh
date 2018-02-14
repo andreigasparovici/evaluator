@@ -3,6 +3,8 @@
 problem=$(printenv PROBLEM)
 time_limit=$(printenv TIME)
 
+declare -A scores
+
 if [ -e $problem ]; then
   echo "Missing parameter PROBLEM"
   exit
@@ -15,7 +17,9 @@ fi
 
 echo "Compiling checker code..."
 g++ eval/$problem.cpp -o eval/$problem
+echo "Done"
 
+echo
 
 for file in ./exec/*
 do
@@ -58,14 +62,21 @@ do
     if [ $evaluation_result -eq "1" ]
     then
       echo -e "Test #$total: \e[32mCorect!\e[0m"
-      pct=$((pct+10))
+      pct=$((pct+1))
     else
       echo -e "Test #$total: \e[31mGresit!\e[0m"
     fi
 
   done
 
-  total=$((total * 10))
-  echo "Rezultat: $pct/$total puncte"
+  scores["$noext"]="$pct/$total"
   echo
+done
+
+echo "Rezultate: "
+
+for file in ./exec/*
+do
+  noext=$(basename $file .cpp)
+  echo "$noext: ${scores[$noext]}"
 done
