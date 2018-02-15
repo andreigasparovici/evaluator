@@ -3,6 +3,7 @@ sandbox/*
 tests/*
 exec/*
 eval/*
+results/*
 
 !sources/.gitkeep
 !sandbox/.gitkeep
@@ -10,3 +11,6 @@ eval/*
 !tests/README
 !exec/.gitkeep
 !eval/.gitkeep
+!results/.gitkeep
+
+*.csv

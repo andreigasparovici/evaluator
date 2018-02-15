@@ -2,6 +2,7 @@
 
 problem=$(printenv PROBLEM)
 time_limit=$(printenv TIME)
+csv_file=$(printenv CSV_FILE)
 
 declare -A scores
 
@@ -85,16 +86,37 @@ do
 
   done
 
-  scores["$noext"]="$pct/$total"
+  scores["$noext"]="$pct"
   echo
 done
 
 echo "Rezultate: "
 
 max_size=$((max_size+1))
+csv_original=$csv_file
+
+if [ ! -e $csv_file ]; then
+  csv_file="./results/$csv_file"
+  if [ -f $csv_file ]; then
+    rm $csv_file
+    touch $csv_file
+  fi
+fi
+
+if [ ! -e $csv_file ]; then
+  printf "Nume,Punctaj,Total\n" >> $csv_file
+fi
 
 for file in ./exec/*
 do
   noext=$(basename $file .cpp)
-  printf "%-${max_size}s: %s\n" "$noext" "${scores[$noext]}"
+  printf "%-${max_size}s: %s\n" "$noext" "${scores[$noext]}/$total"
+  if [ ! -e $csv_file ]; then
+    printf "%s,%s,%s\n" "$noext" "${scores[$noext]}" "$total" >> $csv_file
+  fi
 done
+
+if [ ! -e $csv_file ]; then
+  echo "Rezultatele au fost exportate in results/$csv_original"
+fi
+
