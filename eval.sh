@@ -25,6 +25,7 @@ max_size=0
 
 for file in ./exec/*
 do
+  rm sandbox/*
   noext=$(basename $file .cpp)
   echo "Evaluare: $noext.cpp"
 

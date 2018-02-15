@@ -6,6 +6,7 @@ if [ -e $1  ] || [ -e $2 ] ; then
 fi
 
 
+rm exec/*
 ./compile.sh
 echo
 PROBLEM=$1 TIME=$2 ./eval.sh
