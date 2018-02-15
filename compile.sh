@@ -9,6 +9,11 @@ if [ "$(ls -A sources | grep -v ".gitkeep")" ]; then
 
     if [ -z $error ]; then
       echo -e "$noext.cpp: \e[32mCompilat cu succes!\e[0m"
+      system_calls=$(objdump -d exec/$noext | grep system@plt)
+      if [ ! -z "$system_calls" ]; then
+        echo -e "$noext.cpp: \e[31mUsage of system function not allowed!\e[0m"
+        rm exec/$noext
+      fi
     else
       echo -e "$noext.cpp: \e[31mEroare de compilare!\e[0m"
     fi
