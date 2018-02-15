@@ -103,7 +103,7 @@ if [ ! -e $csv_file ]; then
   fi
 fi
 
-if [ ! -e $csv_file ]; then
+if [ ! -e $csv_original ]; then
   printf "Nume,Punctaj,Total\n" >> $csv_file
 fi
 
@@ -111,12 +111,12 @@ for file in ./exec/*
 do
   noext=$(basename $file .cpp)
   printf "%-${max_size}s: %s\n" "$noext" "${scores[$noext]}/$total"
-  if [ ! -e $csv_file ]; then
+  if [ ! -e $csv_original ]; then
     printf "%s,%s,%s\n" "$noext" "${scores[$noext]}" "$total" >> $csv_file
   fi
 done
 
-if [ ! -e $csv_file ]; then
+if [ ! -e $csv_original ]; then
+  echo
   echo "Rezultatele au fost exportate in results/$csv_original"
 fi
-
