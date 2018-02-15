@@ -68,6 +68,11 @@ do
     ok="$(basename $input .in).ok"
     cp "tests/$ok" sandbox/$problem.ok
 
+    if [ ! -f ./sandbox/$problem.out ]; then
+      echo -e "Test #$total: \e[31mFisier de iesire lipsa!\e[0m"
+      continue
+    fi
+
     evaluation_result=$(./eval/$problem ./sandbox/$problem.in ./sandbox/$problem.out ./sandbox/$problem.ok)
 
     if [ $evaluation_result -eq "1" ]
