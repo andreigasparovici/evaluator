@@ -7,9 +7,14 @@ fi
 
 csv_file=$3
 
+if [ "$(ls -A exec | grep -v ".gitkeep")" ]; then
+  rm exec/*
+fi
 
-rm exec/*
 ./compile.sh
+if [ $? == 1 ]; then
+  exit
+fi
 echo
 
 if [ -e $csv_file ]; then
